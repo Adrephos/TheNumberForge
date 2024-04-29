@@ -1,34 +1,19 @@
-import { useState, useEffect } from 'react'
 import { Header } from '../components/Header.tsx'
-import { NormalButton, MethodButton, ToggleButton } from '../components/Buttons.tsx'
-import { Title, SubTitle } from '../components/Titles.tsx'
-import graphicalIcon from '../assets/graphical.svg'
+import { NormalButton } from '../components/Buttons.tsx'
+import { HomeText } from '../components/HomeText.tsx'
+import piGuy from '../assets/pi_man.svg'
 
 export const Home = () => {
-  const [relativeError, setRelativeError] = useState(false);
-
-  useEffect(() => {
-    console.log("relativeError", relativeError)
-  }, [relativeError])
   return (
-    <div className="flex flex-col justify-center h-full">
+    <div className="flex flex-col items-center gap-10 lg:gap-0 justify-between h-screen px-4">
       <Header />
-      <Title text="Methods" />
-      <Title text="Bisection" />
-      <SubTitle text="Graphic method" iconSrc={graphicalIcon}/>
-      <NormalButton text="Get Started" href="/methods" />
-      <MethodButton text="Multiple roots" href="/methods" />
-      <MethodButton text="Newton" href="/methods" />
-      <MethodButton text="False position" href="/methods" />
-      <MethodButton text="Plot function" href="/methods" />
-      <ToggleButton
-        a="Correct decimals"
-        b="Significant Figures"
-        stateVal={relativeError}
-        setStateVal={setRelativeError}
-      />
+      <div className="flex flex-wrap items-center justify-center gap-10 lg:gap-[10rem]">
+        <HomeText />
+        <img src={piGuy} alt="piGuy" className="h-[25rem]" />
+      </div>
+      <div className="flex items-center justify-center py-[4rem]">
+        <NormalButton text="Get Started" href="/methods" />
+      </div>
     </div>
   )
 }
-
-
