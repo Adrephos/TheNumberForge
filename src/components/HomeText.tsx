@@ -4,7 +4,7 @@ export const HomeText = () => {
       <p className="text-white text-4xl font-medium">
         The Number Forge
       </p>
-      <p className="text-[#645E72] text-base font-light">
+      <p className="text-[#8B839C] text-base font-light">
         Web app that gathers several methods used to solve <br />
         numerical analysis problems.
       </p>
