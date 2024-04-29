@@ -12,7 +12,7 @@ export const NormalButton = ({ text, href }: { text: string, href: string }) => 
 
 export const MethodButton = ({ text, href }: { text: string, href: string }) => {
   return (
-    <div className="m-5 hover:drop-shadow-[0px_0px_3rem_#8576FF] hover:-translate-y-1 active:translate-y-1 w-[13rem] rounded-xl transition-all">
+    <div className="hover:drop-shadow-[0px_0px_3rem_#8576FF] hover:-translate-y-1 active:translate-y-1 w-[13rem] rounded-xl transition-all">
       <a className="block border-[3px] border-[#8576FF] text-center text-[#8576FF] text-xl font-medium py-2 px-4 w-full rounded-xl"
         href={href}>
         {text}
