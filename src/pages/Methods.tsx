@@ -17,13 +17,13 @@ const displayMethod = (method: string) => {
     : method.replace("_", " ").replace(/\b\w/g, (char) => char.toUpperCase())
 }
 
-const Section = ({ methodsNames, title, iconSrc }: { methodsNames: Array<string>, title: string, iconSrc: string }) => {
+const Section = ({ methodsNames, title, iconSrc, type }: { methodsNames: Array<string>, title: string, iconSrc: string, type: string}) => {
   return (
     <div className="w-full">
       <SubTitle text={title} iconSrc={iconSrc} />
       <div className="flex flex-wrap gap-x-10 gap-y-5 xl:w-[80%] pl-14 md:pl-10 pt-5">
         {methodsNames.map((method) => (
-          <MethodButton text={displayMethod(method)} href={`/methods/${method}`} />
+          <MethodButton text={displayMethod(method)} href={`/methods/${type}/${method}`} />
         ))}
       </div>
     </div>
@@ -38,9 +38,9 @@ export const Methods = () => {
         <Title text="Methods" />
       </div>
       <div className="flex flex-col gap-10 pl-[3rem] lg:pl-[8rem] xl:pl-[12rem] items-center pt-10 w-full h-full">
-        <Section methodsNames={graphicMethodArray} title="Graphic method" iconSrc={graphicMethod} />
-        <Section methodsNames={nonlinearArray} title="Solving Nonlinear Equations" iconSrc={nonlinear} />
-        <Section methodsNames={matrixArray} title="Solving Systems of Equations" iconSrc={matrix} />
+        <Section methodsNames={graphicMethodArray} title="Graphic method" iconSrc={graphicMethod} type="plot"/>
+        <Section methodsNames={nonlinearArray} title="Solving Nonlinear Equations" iconSrc={nonlinear} type="nonlinear"/>
+        <Section methodsNames={matrixArray} title="Solving Systems of Equations" iconSrc={matrix} type="systems"/>
       </div>
     </div>
   )
