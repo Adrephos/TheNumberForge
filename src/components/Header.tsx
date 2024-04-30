@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import gitHubIcon from '../assets/Github.svg'
 import linkedInIcon from '../assets/LinkedIn.svg'
 
@@ -21,12 +22,12 @@ export const Header = () => {
         </a>
       </div>
       <div className="flex flex-row justify-between gap-5 px-10 md:px-0 md:gap-20">
-        <a
-          href="/"
-          className={linkStyle}>Home</a>
-        <a
-          href="/methods"
-          className={linkStyle}>Methods</a>
+        <Link to="/">
+          <span className={linkStyle}>Home</span>
+        </Link>
+        <Link to="/methods">
+          <span className={linkStyle}>Methods</span>
+        </Link>
       </div>
       <div className="flex w-[6.5rem] justify-between sm:p-0">
         <a
