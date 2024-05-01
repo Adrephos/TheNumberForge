@@ -6,7 +6,6 @@ export const FunctionPlot = ({ funcStr, height }: { funcStr: string, height: num
   const math = create(all)
   math.import({ ln: (x: number) => math.log(x, math.e) });
 
-  console.log(Theme.background)
   const func = ((x: number) => {
     try {
       return math.evaluate(funcStr, { x })
