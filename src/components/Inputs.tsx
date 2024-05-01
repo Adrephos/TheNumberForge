@@ -1,4 +1,4 @@
-let inputStyle = "bg-[#232327] border border-[#47474F] placeholder-[#5C5C67] text-white text-sm rounded-lg block w-[28rem] p-2.5 "
+let inputStyle = "bg-[#232327] border border-[#47474F] placeholder-[#5C5C67] text-white text-sm rounded-lg block md:w-[28rem] p-2.5 "
 
 export const StringInput = ({ name, setVal }: { name: string, setVal: Function }) => {
   return (
