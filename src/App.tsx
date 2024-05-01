@@ -17,6 +17,10 @@ let router = createBrowserRouter([
     element: <Methods />,
   },
   {
+    path: "methods/nonlinear/:method",
+    element: <NonlinearMethod />,
+  },
+  {
     path: "methods/plot/plot_function",
     element: <Plot />,
   }
