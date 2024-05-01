@@ -16,10 +16,8 @@ export const Plot = () => {
       <div className="flex justify-center pb-5" >
         <StringInput name='f(x)' setVal={setFunctionStr} />
       </div>
-      <div className="px-10 h-10">
-        <div className="px-10 h-10">
-          <FunctionPlot funcStr={functionStr} height={520} />
-        </div>
+      <div className="p-5 md:px-14 h-10">
+        <FunctionPlot funcStr={functionStr} height={520} />
       </div>
     </div>
   );
