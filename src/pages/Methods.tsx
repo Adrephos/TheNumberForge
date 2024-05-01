@@ -10,7 +10,7 @@ let graphicMethodArray = ["plot_function"]
 let nonlinearArray = ["bisection", "false_position", "fixed_point", "newton", "secant", "multiple_roots"]
 let matrixArray = ["jacobi", "gauss-seidel", "sor"]
 
-const displayMethod = (method: string) => {
+export const displayMethod = (method: string) => {
   // Replace underscores with spaces and make the first letter uppercase
   return method == "sor"
     ? "SOR"
