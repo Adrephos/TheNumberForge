@@ -25,3 +25,17 @@ export const MethodButton = ({ text, href }: { text: string, href: string }) => 
     </div>
   )
 }
+
+export const ActionButton = ({ text, func }: { text: string, func: Function }) => {
+  return (
+    <div>
+      <div
+      className="hover:drop-shadow-[0px_0px_1rem_#5C469C] hover:-translate-y-1 active:translate-y-1 w-[18rem] rounded-xl transition-all
+    block text-center bg-[#5C469C] text-white text-xl font-medium py-2 px-4 drop-shadow-lg"
+    onClick={() => func()}
+    >
+        {text}
+      </div>
+    </div>
+  )
+}
