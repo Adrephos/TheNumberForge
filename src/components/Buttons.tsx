@@ -31,7 +31,7 @@ export const ActionButton = ({ text, func }: { text: string, func: Function }) =
     <div>
       <div
       className="hover:drop-shadow-[0px_0px_1rem_#5C469C] hover:-translate-y-1 active:translate-y-1 w-[18rem] rounded-xl transition-all
-    block text-center bg-[#5C469C] text-white text-xl font-medium py-2 px-4 drop-shadow-lg"
+    block text-center bg-[#5C469C] text-white text-xl font-medium py-2 px-4 drop-shadow-lg cursor-pointer"
     onClick={() => func()}
     >
         {text}
