@@ -32,7 +32,7 @@ export const ToggleInput = (
     <div>
       <label
         htmlFor="toggle"
-        className="inline-flex items-center rounded-md cursor-pointer"
+        className="md:w-[28rem] inline-flex items-center rounded-md cursor-pointer"
       >
         <input
           id="toggle"
@@ -40,12 +40,12 @@ export const ToggleInput = (
           className="hidden peer"
           checked={stateVal}
           onChange={() => setStateVal(!stateVal)} />
-        <span className="px-4 py-[0.75rem] rounded-l-md bg-[#44279A]
+        <span className="w-full text-center px-4 py-[0.75rem] rounded-l-md bg-[#44279A]
         text-white peer-checked:bg-[#2B2931]"
         >
           {a}
         </span>
-        <span className="px-4 py-[0.75rem] rounded-r-md bg-[#2B2931]
+        <span className="w-full text-center px-4 py-[0.75rem] rounded-r-md bg-[#2B2931]
         text-white peer-checked:bg-[#44279A]">
           {b}
         </span>
