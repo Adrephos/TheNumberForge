@@ -17,7 +17,7 @@ export const BisectionInput = ({ send }: { send: Function }) => {
     <div className="flex gap-5 w-full flex-col justify-center">
       <StringInput name="a" setVal={setA} />
       <StringInput name="b" setVal={setB} />
-      <StringInput name="fx" setVal={setFx} />
+      <StringInput name="f(x)" setVal={setFx} />
       <NumberInput name="tol" setVal={setTol} type="float" />
       <NumberInput name="niter" setVal={setNiter} type="int" />
       <ToggleInput
@@ -74,7 +74,7 @@ export const FalsePositionInput = ({ send }: { send: Function }) => {
     <div className="flex gap-5 w-full flex-col justify-center">
       <StringInput name="a" setVal={setA} />
       <StringInput name="b" setVal={setB} />
-      <StringInput name="fx" setVal={setFx} />
+      <StringInput name="f(x)" setVal={setFx} />
       <NumberInput name="tol" setVal={setTol} type="float" />
       <NumberInput name="niter" setVal={setNiter} type="int" />
       <ToggleInput
@@ -128,7 +128,7 @@ export const SecantInput = ({ send }: { send: Function }) => {
     <div className="flex gap-5 w-full flex-col justify-center">
       <StringInput name="a" setVal={setA} />
       <StringInput name="b" setVal={setB} />
-      <StringInput name="fx" setVal={setFx} />
+      <StringInput name="f(x)" setVal={setFx} />
       <NumberInput name="tol" setVal={setTol} type="float" />
       <NumberInput name="niter" setVal={setNiter} type="int" />
       <ToggleInput
