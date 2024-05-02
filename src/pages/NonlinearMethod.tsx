@@ -79,11 +79,11 @@ export const NonlinearMethod = () => {
   return (
     <div className="text-white">
       <Header />
-      <div className="xl:pl-[10rem] lg:pl-[6rem] lg:pr-0 px-[2rem] pt-5 lg:pt-0 pb-5">
+      <div className="xl:pl-[10rem] lg:pl-[6rem] lg:pr-0 px-[2rem] pt-5 lg:pt-0 pb-10">
         <Title text={method ? displayMethod(method) : ""} />
       </div>
-      <div className="flex flex-wrap justify-between px-[3rem] xl:px-[11rem] pb-4">
-        <div ref={ref}>
+      <div className="flex flex-wrap gap-10 md:gap-0 justify-between mx-[3rem] lg:mx-[7rem] xl:mx-[11rem] mb-4">
+      <div ref={ref} className="w-full md:w-4/12">
           <h4 className="text-xl font-medium pb-2">Parameters</h4>
           {method === "bisection"
             ? <BisectionInput send={setValues} />
@@ -105,7 +105,7 @@ export const NonlinearMethod = () => {
               } />
           </div>
         </div>
-        <div className="w-[60%] p-2">
+        <div className="w-full md:w-7/12">
           <FunctionPlot funcStr={values?.fx ?? ""} height={plotHeight} />
         </div>
       </div>
