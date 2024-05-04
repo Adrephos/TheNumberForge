@@ -1,15 +1,4 @@
 .MafsView {
-  display: block;
-  background: var(--mafs-bg);
-  overflow: hidden;
-  -webkit-user-select: none;
-  user-select: none;
-  font-family: inherit;
-  font-variant-numeric: tabular-nums;
-  touch-action: none;
-  outline: 0;
-  border-radius: 1rem;
-
   --mafs-bg: #2B2931;
   --mafs-fg: #B3AFAF;
 
