@@ -44,7 +44,7 @@ export const NonlinearMethod = () => {
 
   useEffect(() => {
     if (refW.current) {
-      setPlotWidth(refW.current.clientWidth * 0.57)
+      setPlotWidth(refW.current.clientWidth)
     }
     if (refH.current) {
       setPlotHeight(refH.current.clientHeight)
@@ -87,7 +87,7 @@ export const NonlinearMethod = () => {
       <div className="xl:pl-[10rem] lg:pl-[6rem] lg:pr-0 px-[2rem] pt-5 lg:pt-0 pb-10">
         <Title text={method ? displayMethod(method) : ""} />
       </div>
-      <div ref={refW}  className="flex flex-wrap gap-10 md:gap-0 justify-between mx-[3rem] lg:mx-[7rem] xl:mx-[11rem] mb-4">
+      <div className="flex flex-wrap gap-10 md:gap-0 justify-between mx-[3rem] lg:mx-[7rem] xl:mx-[11rem] mb-4">
         <div ref={refH}  className="w-full md:w-4/12">
           <h4 className="text-xl font-medium pb-2">Parameters</h4>
           {method === "bisection"
@@ -110,7 +110,7 @@ export const NonlinearMethod = () => {
               } />
           </div>
         </div>
-        <div className="w-fit md:w-fit p-1 h-fit bg-[#2B2931] rounded-lg">
+        <div ref={refW}  className="w-full md:w-7/12 p-1 h-fit bg-[#2B2931] rounded-lg">
           <FunctionPlot funcStr={values?.fx ?? ""} height={plotHeight} width={plotWitdth} />
         </div>
       </div>
