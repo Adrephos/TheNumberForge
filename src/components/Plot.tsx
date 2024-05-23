@@ -26,6 +26,14 @@ export const FunctionPlot = ({ funcStr, height, width }: { funcStr: string, heig
       }
     } catch (e) { lineSetting = {} }
 
+    let xScale: [number, number] = [-3, 3]
+
+    function computeYScale(width: number, height: number, xScale: [number, number]): [number, number] {
+      const xDiff = xScale[1] - xScale[0]
+      const yDiff = height * xDiff / width
+      return [-yDiff / 2, yDiff / 2]
+    }
+
     if (plotRef.current) {
       functionPlot({
         target: plotRef.current,
@@ -33,13 +41,19 @@ export const FunctionPlot = ({ funcStr, height, width }: { funcStr: string, heig
         height: height,
         grid: false,
         data: lineSetting.fn != funcStr ? undefined : [lineSetting],
-        xAxis: { domain: [-3, 3] },
+        xDomain: xScale,
+        yDomain: computeYScale(width, height, xScale)
       });
 
       // Apply custom styles to the SVG elements
       const svgElement = plotRef.current.querySelector('svg');
       if (svgElement) {
-        svgElement.style.backgroundColor = '#2B2931'; // Change background color
+        const lines = svgElement.querySelectorAll('path.line');
+        lines.forEach(line => {
+          (line as SVGPathElement).style.strokeWidth = '2'; // Change line color
+        });
+
+        svgElement.style.backgroundColor = '#00000000'; // Change background color
         svgElement.style.color = '#b3afaf'; // Change text color (axis labels, etc.)
 
         const texts = svgElement.querySelectorAll('text');
