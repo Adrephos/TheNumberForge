@@ -37,11 +37,13 @@ export const NonlinearMethod = () => {
   const [showRoot, setShowRoot] = useState(false)
   const [showTable, setShowTable] = useState(false)
   const [plotHeight, setPlotHeight] = useState(0)
+  const [plotWitdth, setPlotWidth] = useState(0)
 
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (ref.current) {
+      setPlotWidth(ref.current.clientWidth)
       setPlotHeight(ref.current.clientHeight)
     }
   }, [])
@@ -83,7 +85,7 @@ export const NonlinearMethod = () => {
         <Title text={method ? displayMethod(method) : ""} />
       </div>
       <div className="flex flex-wrap gap-10 md:gap-0 justify-between mx-[3rem] lg:mx-[7rem] xl:mx-[11rem] mb-4">
-      <div ref={ref} className="w-full md:w-4/12">
+        <div className="w-full md:w-4/12">
           <h4 className="text-xl font-medium pb-2">Parameters</h4>
           {method === "bisection"
             ? <BisectionInput send={setValues} />
@@ -91,7 +93,7 @@ export const NonlinearMethod = () => {
               ? <FixedPointInput send={setValues} />
               : (method === "false_position"
                 ? <FalsePositionInput send={setValues} />
-                : (method === "newton"
+                : (method === "newton" || method === "multiple_roots"
                   ? <NewtonInput send={setValues} />
                   : <SecantInput send={setValues} />)))}
           <div className="flex items-center justify-center pt-7">
@@ -105,8 +107,8 @@ export const NonlinearMethod = () => {
               } />
           </div>
         </div>
-        <div className="w-full md:w-7/12">
-          <FunctionPlot funcStr={values?.fx ?? ""} height={plotHeight} />
+        <div ref={ref} className="w-full md:w-7/12">
+          <FunctionPlot funcStr={values?.fx ?? ""} height={plotHeight} width={plotWitdth} />
         </div>
       </div>
       <div className="flex flex-wrap justify-between px-[3rem] xl:px-[11rem] pb-2">

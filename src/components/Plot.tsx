@@ -1,30 +1,65 @@
-import { Mafs, Coordinates, Plot, Theme } from "mafs"
+import { useEffect, useRef } from 'react';
 import { create, all } from 'mathjs'
+import functionPlot, { FunctionPlotDatum } from 'function-plot';
 
+export const FunctionPlot = ({ funcStr, height, width }: { funcStr: string, height: number, width: number }) => {
+  const testRef = useRef<HTMLDivElement>(null);
+  const plotRef = useRef<HTMLDivElement>(null);
 
-export const FunctionPlot = ({ funcStr, height }: { funcStr: string, height: number }) => {
   const math = create(all)
   math.import({ ln: (x: number) => math.log(x, math.e) });
 
-  const func = ((x: number) => {
+  let lineSetting: FunctionPlotDatum = {
+    fn: funcStr,
+    color: '#ae58ff',
+    graphType: 'polyline',
+    sampler: 'builtIn',
+  }
+
+  useEffect(() => {
     try {
-      return math.evaluate(funcStr, { x })
-    } catch (e) {
-      return NaN
+      if (testRef.current) {
+        functionPlot({
+          target: testRef.current,
+          data: [{ fn: funcStr, sampler: 'builtIn' }],
+        });
+      }
+    } catch (e) { lineSetting = {} }
+
+    if (plotRef.current) {
+      functionPlot({
+        target: plotRef.current,
+        width: width,
+        height: height,
+        grid: false,
+        data: lineSetting.fn != funcStr ? undefined : [lineSetting],
+        xAxis: { domain: [-3, 3] },
+      });
+
+      // Apply custom styles to the SVG elements
+      const svgElement = plotRef.current.querySelector('svg');
+      if (svgElement) {
+        svgElement.style.backgroundColor = '#2B2931'; // Change background color
+        svgElement.style.color = '#b3afaf'; // Change text color (axis labels, etc.)
+
+        const texts = svgElement.querySelectorAll('text');
+        texts.forEach(text => {
+          text.style.fill = '#b3afaf';
+        });
+
+        const paths = svgElement.querySelectorAll('path.origin, path.domain');
+        paths.forEach(path => {
+          (path as SVGPathElement).style.stroke = '#b3afaf88'; // Change stroke color
+          (path as SVGPathElement).style.fill = 'none'; // Change fill color
+        });
+      }
     }
-  })
+  }, [funcStr, height, width]);
 
   return (
-    <Mafs
-      zoom={{ min: 0.1, max: 6 }}
-      viewBox={{ padding: 5 }}
-      height={height}
-    >
-      <Coordinates.Cartesian />
-      <Plot.OfX
-        y={func}
-        color={Theme.blue}
-      />
-    </Mafs>
-  )
-}
+    <div className="w-full h-full">
+      <div ref={testRef} className="plot-container hidden"></div>
+      <div ref={plotRef} className="plot-container w-full h-auto rounded-xl"></div>
+    </div>
+  );
+};
