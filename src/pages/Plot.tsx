@@ -25,7 +25,7 @@ export const Plot = () => {
       </div>
       <div className="flex justify-center md:px-14 h-10 w-full">
         <div className="p-2 bg-[#2B2931] h-fit rounded-lg flex flex-col items-center">
-          <div className="w-[80%] px-4" >
+          <div className="w-[80%] px-4 pt-2" >
             <StringInput name='f(x)' setVal={setFunctionStr} />
           </div>
           <FunctionPlot funcStr={functionStr} height={520} width={plotWidth} />

@@ -1,11 +1,11 @@
 export const Title = ({ text }: { text: string }) => {
   return (
     <div
-    className="text-4xl text-[#D4C2FC] font-medium lg:w-[40%]
-      border-[#47474F] border-b-[5px] pb-[0.5rem]"
+      className="text-4xl text-[#D4C2FC] font-medium lg:w-fit
+      border-[#47474F] border-b-[3px] pb-[0.5rem] px-2"
     >
       {text}
-    </div>
+    </div >
   )
 }
 
