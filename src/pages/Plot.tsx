@@ -23,11 +23,11 @@ export const Plot = () => {
       <div className="xl:pl-[10rem] lg:pl-[6rem] lg:pr-0 px-[2rem] pt-5 lg:pt-0 pb-5">
         <Title text="Function plotter" />
       </div>
-      <div className="flex justify-center pb-5" >
-        <StringInput name='f(x)' setVal={setFunctionStr} />
-      </div>
       <div className="flex justify-center md:px-14 h-10 w-full">
-        <div className="p-2 bg-[#2B2931] h-fit rounded-lg">
+        <div className="p-2 bg-[#2B2931] h-fit rounded-lg flex flex-col items-center">
+          <div className="w-[80%] px-4" >
+            <StringInput name='f(x)' setVal={setFunctionStr} />
+          </div>
           <FunctionPlot funcStr={functionStr} height={520} width={plotWidth} />
         </div>
       </div>
