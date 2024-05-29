@@ -10,7 +10,7 @@ const computeYScale = (width: number, height: number, xScale: [number, number]):
   return [-yDiff / 2, yDiff / 2]
 }
 
-const plot = (ref: React.RefObject<HTMLDivElement>, dimensions: [number, number], data: [FunctionPlotDatum] | undefined) => {
+const plot = (ref: React.RefObject<HTMLDivElement>, dimensions: [number, number], data: [FunctionPlotDatum] | FunctionPlotDatum[] | undefined) => {
   if (ref.current) {
     functionPlot({
       target: ref.current,
@@ -73,6 +73,39 @@ export const FunctionPlot = ({ funcStr, height, width }: { funcStr: string, heig
       stylePlot(plotRef)
     }
   }, [funcStr, height, width]);
+
+  return (
+    <div className="w-full h-full">
+      <div ref={plotRef} className="plot-container w-full h-auto rounded-xl"></div>
+    </div>
+  );
+};
+
+export const SplinesPlot = ({ funcs, height, width }: { funcs: [[number, number], string][], height: number, width: number }) => {
+  const plotRef = useRef<HTMLDivElement>(null);
+
+  const math = create(all)
+  math.import({ ln: (x: number) => math.log(x, math.e) });
+
+  let lineSettings: FunctionPlotDatum[] = funcs.map((func) => {
+    let lineSetting: FunctionPlotDatum = {
+      fn: func[1],
+      range: func[0],
+      graphType: 'polyline',
+      sampler: 'builtIn',
+    }
+    return lineSetting
+  })
+
+  useEffect(() => {
+    try {
+      plot(plotRef, [width, height], lineSettings)
+      stylePlot(plotRef)
+    } catch (e) {
+      plot(plotRef, [width, height], undefined)
+      stylePlot(plotRef)
+    }
+  }, [funcs, height, width]);
 
   return (
     <div className="w-full h-full">
