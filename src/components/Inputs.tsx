@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 let inputStyle = "bg-[#232327] border border-[#47474F] placeholder-[#5C5C67] text-white text-sm rounded-lg block w-full p-2.5 "
 
 export const StringInput = ({ name, setVal }: { name: string, setVal: Function }) => {
@@ -53,3 +55,87 @@ export const ToggleInput = (
     </div>
   )
 }
+
+interface MatrixInputProps {
+  matrix: number[][];
+  setMatrix: (matrix: number[][]) => void;
+}
+
+export const MatrixInput: React.FC<MatrixInputProps> = ({ matrix, setMatrix }) => {
+  const [show, setShow] = useState(false);
+  const handleInputChange = (rowIndex: number, colIndex: number, value: number) => {
+    if (!isNaN(value)) {
+      const newMatrix = matrix.map((row, rIdx) =>
+        row.map((col, cIdx) => (rIdx === rowIndex && cIdx === colIndex ? value : col))
+      );
+      setMatrix(newMatrix);
+    }
+  };
+
+  return (
+    <div>
+      {show && (
+        <div className="pb-5">
+          {
+            matrix.map((row, rowIndex) => (
+              <div key={rowIndex} className="flex">
+                {row.map((_, colIndex) => (
+                  <div className="flex w-12">
+                    <NumberInput
+                      name={`a${rowIndex + 1}${colIndex + 1}`}
+                      type="float"
+                      setVal={(val: number) => { handleInputChange(rowIndex, colIndex, val) }}
+                    />
+                  </div>
+                ))}
+              </div>
+            ))
+          }
+        </div>
+      )}
+      <button className="bg-[#44279A] text-white rounded-lg p-1 w-full"
+        onClick={() => setShow(!show)}>
+        {show ? "Save" : "Edit"}
+      </button>
+    </div>
+  );
+};
+
+
+interface VectorInputProps {
+  vector: number[];
+  setVector: (vector: number[]) => void;
+}
+
+export const VectorInput: React.FC<VectorInputProps> = ({ vector, setVector }) => {
+  const [show, setShow] = useState(false);
+
+  const handleInputChange = (index: number, value: number) => {
+    if (!isNaN(value)) {
+      const newVector = vector.map((val, idx) => (idx === index ? value : val));
+      setVector(newVector);
+    }
+  };
+
+  return (
+    <div>
+      {show && (
+        <div className="pb-5">
+          {
+            vector.map((_, index) => (
+              <NumberInput
+                name={`a${index + 1}`}
+                type="float"
+                setVal={(val: number) => { handleInputChange(index, val) }}
+              />
+            ))
+          }
+        </div>
+      )}
+      <button className="bg-[#44279A] text-white rounded-lg p-2 w-full"
+        onClick={() => setShow(!show)}>
+        {show ? "Save" : "Edit"}
+      </button>
+    </div>
+  );
+};

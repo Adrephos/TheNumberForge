@@ -20,4 +20,3 @@ export const Alert = ({ message, bold, setAlert, root }: { message: string, bold
     </div>
   )
 }
-
